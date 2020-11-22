@@ -1,67 +1,70 @@
+
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
-//@Entity
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Patient {
-    //@PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @ColumnInfo(name = "patientId")
     private int patientId;
-    private int room;
-
+    @ColumnInfo(name = "firstname")
     private String firstName;
+    @ColumnInfo(name = "lastname")
     private String lastName;
+    @ColumnInfo(name = "department")
     private String department;
-    private String nurseId;
-
-
-    public Patient() {}
-
-    public Patient(int room, String first, String last,
-            String department, String nurseId) {
-        this.room = room;
-        this.firstName = first;
-        this.lastName = last;
+    @ColumnInfo(name = "nurseId")
+    private int nurseId;
+    @ColumnInfo(name = "room")
+    private String room;
+    //
+    public Patient(){}
+    public Patient(int patientID, String firstName, String lastname, String department, int nurseId,String room)
+    {
+        this.patientId = patientID;
+        this.firstName = firstName;
+        this.lastName = lastname;
         this.department = department;
         this.nurseId = nurseId;
+        this.room = room;
+    }
+    //
+    public int getPatientId(){return patientId;}
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+    public String getFirstname(){return firstName;}
+    public void setFirstname(String firstName)
+    {
+        this.firstName = firstName;
+    }
+    public String getLastName(){return lastName;}
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+    public String getDepartment(){return department;}
+    public void setDepartment(String department)
+    {
+        this.department = department;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String first) {
-        this.firstName = first;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String last) {
-        this.lastName = last;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-    public void setDepartment(String dep) {
-        this.department = dep;
-    }
-
-    public String getNurseId() {
+    public int getNurseId() {
         return nurseId;
     }
-    public void setNurseId(String nurseId) {
+
+    public void setNurseId(int nurseId) {
         this.nurseId = nurseId;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
-    public void setRoom(int room) {
-        this.room = room;
-    }
 
-    public int getPatientId() {
-        return patientId;
-    }
-    public void setPatientId(int id) {
-        this.patientId = id;
+    public void setRoom(String room) {
+        this.room = room;
     }
 }

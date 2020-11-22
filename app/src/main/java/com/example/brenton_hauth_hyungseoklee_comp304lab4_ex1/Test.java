@@ -1,63 +1,76 @@
+
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
-
-//@Entity
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+//testId
+//        patientId
+//        nurseId
+//        BPL
+//        BPH
+//        temperature
+@Entity
 public class Test {
-    private int testId;
-    private int patientId;
-    private String nurseId;
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "patientID")
+    private int patientID;
+    @ColumnInfo(name = "nurseID")
+    private int nurseID;
+    @ColumnInfo(name = "BPL")
     private int BPL;
+    @ColumnInfo(name = "BPH")
     private int BPH;
-    private int temperature;
-
-    public Test() {}
-
-    public Test(int patientId, String nurseId, int bpl, int bph, int temperature) {
-        this.patientId = patientId;
-        this.nurseId = nurseId;
-        BPL = bpl;
-        BPH = bph;
+    @ColumnInfo(name = "temperature")
+    private float temperature;
+    public Test(){}
+    public Test(int patientID, int nurseID, int BPL, int BPH, float temperature)
+    {
+        this.patientID = patientID;
+        this.nurseID = nurseID;
+        this.BPL = BPL;
+        this.BPH = BPH;
         this.temperature = temperature;
     }
 
-    public int getTestId() {
-        return testId;
-    }
-    public void setTestId(int id) {
-        testId = id;
+    public void setPatientID(int patientID) {
+        this.patientID = patientID;
     }
 
-    public String getNurseId() {
-        return nurseId;
-    }
-    public void setNurseId(String nurseId) {
-        this.nurseId = nurseId;
+    public int getPatientID() {
+        return patientID;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public void setNurseID(int nurseID) {
+        this.nurseID = nurseID;
     }
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+
+    public int getNurseID() {
+        return nurseID;
+    }
+
+    public void setBPL(int BPL) {
+        this.BPL = BPL;
     }
 
     public int getBPL() {
         return BPL;
     }
-    public void setBPL(int bpl) {
-        BPL = bpl;
+
+    public void setBPH(int BPH) {
+        this.BPH = BPH;
     }
 
     public int getBPH() {
         return BPH;
     }
-    public void setBPH(int bph) {
-        BPH = bph;
+
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
     }
 
-    public int getTemperature() {
+    public float getTemperature() {
         return temperature;
-    }
-    public void setTemperature(int temp) {
-        temperature = temp;
     }
 }
