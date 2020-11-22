@@ -20,6 +20,7 @@ public class Patient {
     @ColumnInfo(name = "room")
     private String room;
     //
+    public Patient(){}
     public Patient(int patientID, String firstName, String lastname, String department, int nurseId,String room)
     {
         this.patientId = patientID;
