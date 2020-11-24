@@ -14,6 +14,8 @@ import androidx.room.PrimaryKey;
 public class Test {
     @PrimaryKey
     @NonNull
+    @ColumnInfo(name = "testID")
+    private int testId;
     @ColumnInfo(name = "patientID")
     private int patientID;
     @ColumnInfo(name = "nurseID")
