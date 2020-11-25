@@ -47,6 +47,10 @@ public class PatientRoomRepository {
         return mPatientDao.getPatientsForNurse(nurseId);
     }
 
+    LiveData<List<Nurse>> getNurseByLoginInfo(int nurseId, String password) {
+        return mNurseDao.getNurseByLoginInfo(nurseId, password);
+    }
+
     void insertPatient(Patient patient)
     {
         PatientRoomDatabase.databaseWriteExecutor.execute(()->{

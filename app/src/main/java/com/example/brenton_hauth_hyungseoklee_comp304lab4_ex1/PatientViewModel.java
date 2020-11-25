@@ -34,6 +34,13 @@ public class PatientViewModel extends AndroidViewModel {
         return mRepository.getTestsForPatient(patientId);
     }
 
+    // may change logic, what do you think?
+    public Nurse getNurseByLoginInfo(int nurseId, String password) {
+        LiveData<List<Nurse>> liveData = mRepository.getNurseByLoginInfo(nurseId, password);
+        List<Nurse> nurses = liveData.getValue();
+        return (nurses.size() != 1) ? null : nurses.get(0);
+    }
+
     public LiveData<List<Patient>> getAllPatients() { return mAllPatients; }
     public LiveData<List<Nurse>> getAllNurses() { return mAllNurses; }
     public LiveData<List<Test>> getAllTests() { return mAllTests; }

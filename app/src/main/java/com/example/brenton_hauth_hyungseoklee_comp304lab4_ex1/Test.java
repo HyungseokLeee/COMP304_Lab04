@@ -36,6 +36,10 @@ public class Test {
         this.temperature = temperature;
     }
 
+    public int getTestID() {
+        return testId;
+    }
+
     public void setPatientID(int patientID) {
         this.patientID = patientID;
     }

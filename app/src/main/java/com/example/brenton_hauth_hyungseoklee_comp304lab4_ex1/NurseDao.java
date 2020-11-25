@@ -11,4 +11,7 @@ public interface NurseDao {
     void insert(Nurse nurse);
     @Query("select * from nurse order by firstName and lastName")
     LiveData<List<Nurse>> getAllNurse();
+
+    @Query("select * from nurse where nurseID = :nId and password = :pwd")
+    LiveData<List<Nurse>> getNurseByLoginInfo(int nId, String pwd);
 }
