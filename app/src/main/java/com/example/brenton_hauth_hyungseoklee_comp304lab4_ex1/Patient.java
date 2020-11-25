@@ -21,12 +21,12 @@ public class Patient {
     @ColumnInfo(name = "room")
     private String room;
     //
-    public Patient(){}
-    public Patient(int patientID, String firstName, String lastname, String department, int nurseId,String room)
-    {
-        this.patientId = patientID;
-        this.firstName = firstName;
-        this.lastName = lastname;
+    public Patient() {}
+    public Patient(int pId, String first, String last,
+            String department, int nurseId, String room) {
+        this.patientId = pId;
+        this.firstName = first;
+        this.lastName = last;
         this.department = department;
         this.nurseId = nurseId;
         this.room = room;
@@ -37,8 +37,8 @@ public class Patient {
     public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
-    public String getFirstname(){return firstName;}
-    public void setFirstname(String firstName)
+    public String getFirstName(){return firstName;}
+    public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }

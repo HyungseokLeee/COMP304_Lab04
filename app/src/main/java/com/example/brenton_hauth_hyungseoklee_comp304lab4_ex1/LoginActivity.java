@@ -1,6 +1,7 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -22,11 +23,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameText, passwordText;
 
     private SharedPreferences prefs;
+    private PatientViewModel patientViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
         prefs = getSharedPreferences(LOGIN_PREFS, 0);
 
@@ -61,6 +64,12 @@ public class LoginActivity extends AppCompatActivity {
         if (username == null || password == null) {
             return false;
         }
+        int usr;
+        try { usr = Integer.parseInt(username); }
+        catch (Exception e) { return false; }
+
+        Nurse nurse = patientViewModel.getNurseByLoginInfo(usr, password);
+        if (nurse == null) return false;
         // return true if found,
         // otherwise return false
         // ...
