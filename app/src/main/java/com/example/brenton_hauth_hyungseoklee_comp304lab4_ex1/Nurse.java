@@ -11,6 +11,7 @@ import androidx.room.PrimaryKey;
 //        password
 @Entity
 public class Nurse {
+    // May be better to have nurseID as a String, because it is also a username
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "nurseID")
