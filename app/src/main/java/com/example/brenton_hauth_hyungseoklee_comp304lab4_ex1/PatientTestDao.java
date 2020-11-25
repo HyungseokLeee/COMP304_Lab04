@@ -14,10 +14,10 @@ public interface PatientTestDao {
     @Query("SELECT * FROM Patient INNER JOIN Patient_Test ON " +
             "patient.patientId = Patient_Test.tId WHERE " +
             "Patient_Test.tId=:tId")
-    LiveData<List<Patient>> getPatientForTest(int tId);
+    LiveData<List<Patient>> getPatientsForTest(int tId); // Not sure if we still need this
 
     @Query("SELECT * FROM Test INNER JOIN Patient_Test ON " +
             "test.testID = Patient_Test.tId WHERE " +
             "Patient_Test.ptId =:ptId")
-    LiveData<List<Test>>getTestForPatient(int ptId);
+    LiveData<List<Test>> getTestsForPatient(int ptId);
 }

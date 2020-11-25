@@ -49,10 +49,11 @@ public class LoginActivity extends AppCompatActivity {
                 passwordText, passwordPattern, R.string.password_err_msg);
 
         if (locateUser(username, password)) {
+            // Saves the login data to the SharedPrefs
             SharedPreferences.Editor edit = prefs.edit();
             edit.putString("username", username);
             edit.apply();
-            finish();
+            finish(); // closes and returns to MainActivity
         }
     }
 

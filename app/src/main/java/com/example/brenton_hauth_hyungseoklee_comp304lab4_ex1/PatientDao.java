@@ -12,6 +12,11 @@ import java.util.List;
 public interface PatientDao {
     @Query("select * from Patient order by firstname and lastname")
     LiveData<List<Patient>> getAllPatients();
+
+    @Query("select * from Patient where nurseId = :nId " +
+            "order by firstname and lastname")
+    LiveData<List<Patient>> getPatientsForNurse(int nId);
+
     @Insert
     void insert(Patient... patients);
     @Update
