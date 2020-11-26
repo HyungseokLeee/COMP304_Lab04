@@ -2,6 +2,8 @@ package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import java.util.List;
+
+
 public class PatientRoomRepository {
     private PatientDao mPatientDao;
     private TestDao mTestDao;
@@ -13,8 +15,7 @@ public class PatientRoomRepository {
     private LiveData<List<Nurse>> mAllNurses;
     private LiveData<List<Patient>> mPatientsForTest;
 
-    PatientRoomRepository(Application application)
-    {
+    public PatientRoomRepository(Application application) {
         PatientRoomDatabase db =PatientRoomDatabase.getDatabase(application);
         mPatientDao = db.PatientDao();
         mTestDao = db.TestDao();
@@ -26,14 +27,28 @@ public class PatientRoomRepository {
         mAllTests = mTestDao.getAllTest();
         mAllNurses = mNurseDao.getAllNurse();
     }
-    LiveData<List<Patient>> getmAllPatients() {return mAllPatients;}
-    LiveData<List<Test>> getmAllTests() {return mAllTests;}
-    LiveData<List<Nurse>> getmAllNurses() {return mAllNurses;}
 
-    LiveData<List<Patient>> getmPatientsForTest(int tId)
+    LiveData<List<Patient>> getAllPatients() { return mAllPatients; }
+    LiveData<List<Test>> getAllTests() { return mAllTests; }
+    LiveData<List<Nurse>> getAllNurses() { return mAllNurses; }
+
+    LiveData<List<Patient>> getPatientsForTest(int tId)
     {
-        mPatientsForTest = mPatientTestDao.getPatientForTest(tId);
+        mPatientsForTest = mPatientTestDao.getPatientsForTest(tId);
         return mPatientsForTest;
+    }
+
+    LiveData<List<Test>> getTestsForPatient(int patientId) {
+        // mPatientTestDao.getTestsForPatient(patientId);
+        return mTestDao.getTestsForPatient(patientId);
+    }
+
+    LiveData<List<Patient>> getPatientsForNurse(int nurseId) {
+        return mPatientDao.getPatientsForNurse(nurseId);
+    }
+
+    LiveData<List<Nurse>> getNurseByLoginInfo(int nurseId, String password) {
+        return mNurseDao.getNurseByLoginInfo(nurseId, password);
     }
 
     void insertPatient(Patient patient)

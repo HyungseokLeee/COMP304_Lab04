@@ -32,6 +32,7 @@ public class Patient {
         this.room = room;
     }
     //
+    public String getFullName() { return firstName + " " + lastName; }
     public int getPatientId(){return patientId;}
     public void setPatientId(int patientId) {
         this.patientId = patientId;
