@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Brenton_Hauth_Hyungseoklee_COMP304Lab4_Ex1</string>
+    <string name="password_err_msg">Must be 8 to 32 characters long</string>
+    <string name="username_err_msg">Must have a minimum of 8 characters</string>
+    <string name="edit_text_username_hint">Username</string>
+    <string name="edit_text_password_hint">Password</string>
+    <string name="login_button_text">Login</string>
 </resources>
