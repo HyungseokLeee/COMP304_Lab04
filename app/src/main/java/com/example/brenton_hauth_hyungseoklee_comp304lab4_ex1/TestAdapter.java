@@ -55,7 +55,7 @@ public class TestAdapter
 
         @SuppressLint("SetTextI18n")
         public void setTest(Test test) {
-            String text = Integer.toString(test.getTestID());
+            String text = Integer.toString(test.getTestId());
             // Cannot set id directly because it is an int
             testTextView.setText(text);
         }

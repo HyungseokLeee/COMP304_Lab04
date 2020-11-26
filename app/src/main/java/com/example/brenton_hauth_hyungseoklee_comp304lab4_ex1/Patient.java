@@ -22,9 +22,9 @@ public class Patient {
     private String room;
     //
     public Patient(){}
-    public Patient(int patientID, String firstName, String lastname, String department, int nurseId,String room)
+    public Patient(int patientId, String firstName, String lastname, String department, int nurseId,String room)
     {
-        this.patientId = patientID;
+        this.patientId = patientId;
         this.firstName = firstName;
         this.lastName = lastname;
         this.department = department;
@@ -37,11 +37,10 @@ public class Patient {
     public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
-    public String getFirstname(){return firstName;}
-    public void setFirstname(String firstName)
-    {
-        this.firstName = firstName;
-    }
+
+    public String getFirstName() {return firstName;}
+
+    public void setFirstName(String firstName) {this.firstName = firstName;}
     public String getLastName(){return lastName;}
     public void setLastName(String lastName)
     {
