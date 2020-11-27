@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey;
 public class Test {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "testID")
+    @ColumnInfo(name = "testId")
     private int testId;
     @ColumnInfo(name = "patientID")
     private int patientID;
@@ -27,31 +27,24 @@ public class Test {
     @ColumnInfo(name = "temperature")
     private float temperature;
     public Test(){}
-    public Test(int patientID, int nurseID, int BPL, int BPH, float temperature)
-    {
-        this.patientID = patientID;
+    public Test(int patientId, int nurseID, int BPL, int BPH, float temperature) {
+        this.patientID = patientId;
         this.nurseID = nurseID;
         this.BPL = BPL;
         this.BPH = BPH;
         this.temperature = temperature;
     }
 
-    public int getTestID() {
-        return testId;
-    }
+    public int getTestId() { return testId;}
 
-    public void setPatientID(int patientID) {
-        this.patientID = patientID;
-    }
+    public void setTestId(int testId) { this.testId = testId;}
 
-    public int getPatientID() {
-        return patientID;
-    }
+    public int getPatientID() { return patientID; }
+    public void setPatientID(int patientID) { this.patientID = patientID; }
 
     public void setNurseID(int nurseID) {
         this.nurseID = nurseID;
     }
-
     public int getNurseID() {
         return nurseID;
     }

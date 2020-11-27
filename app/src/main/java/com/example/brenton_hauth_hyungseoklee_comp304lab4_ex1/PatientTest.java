@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 @Entity(tableName = "Patient_Test",
-        primaryKeys = {"patientId", "testId"},
+        primaryKeys = {"ptId", "tstId"},
         foreignKeys = {
                 @ForeignKey(
                     entity = Patient.class,
@@ -14,23 +14,26 @@ import androidx.room.ForeignKey;
                 @ForeignKey(
                         entity = Test.class,
                         parentColumns = "testId",
-                        childColumns = "tId")
+                        childColumns = "tstId")
         })
+
 public class PatientTest {
+    @NonNull
     private int ptId;
     @NonNull
-    private int tId;
+    private int tstId;
 
-    public PatientTest(int patientId, int testId)
+    public PatientTest(int ptId, int tstId)
     {
-        this.ptId = patientId;
-        this.tId = testId;
+        this.ptId = ptId;
+        this.tstId = tstId;
     }
 
-    public int getPatientId() {
+    public int getPtId() {
         return ptId;
     }
-    public int getTestId() {
-        return tId;
+
+    public int getTstId() {
+        return tstId;
     }
 }
