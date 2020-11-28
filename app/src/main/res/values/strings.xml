@@ -14,4 +14,6 @@
     <string name="sign_up_button_txt">Sign Up</string>
     <string name="view_patients">View Patients</string>
     <string name="logout">Logout</string>
+    <string name="view_tests">View tests</string>
+    <string name="edit_patient_button_text">Edit</string>
 </resources>

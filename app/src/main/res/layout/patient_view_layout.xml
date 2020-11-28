@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginBottom="8dp">
     <TextView
         android:id="@+id/patientNameTextView"
-        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="21sp"
+        android:layout_marginStart="16dp"
+        android:textAlignment="viewStart"
+        android:textColor="#1e1e1e"
+        android:text="Brenton Hauth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/patientIdTextView"
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="(ID: 00000000)"
+        android:layout_marginEnd="16dp"
+        android:textSize="17sp"
+        android:textAlignment="textEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/patientDepTextView"
+        app:layout_constraintTop_toBottomOf="@id/patientNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Department: Emergency"
+        android:layout_marginStart="16dp"
+        android:textSize="17sp"
+        android:textAlignment="textEnd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/patientRoomTextView"
+        app:layout_constraintTop_toBottomOf="@id/patientIdTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Room: A-21"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="19sp"
+        android:textAlignment="textEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/patientViewTestsButton"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#2196F3"
+        android:text="@string/view_tests"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/patientEditButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/patientDepTextView" />
+
+    <Button
+        android:id="@+id/patientEditButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#E91E63"
+        android:text="@string/edit_patient_button_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/patientDepTextView" />
+    <View
+        app:layout_constraintTop_toBottomOf="@id/patientEditButton"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="1dp"
+        android:background="#c1c1c1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
