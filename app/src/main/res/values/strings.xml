@@ -12,4 +12,6 @@
     <string name="edit_text_last_name_hint">Last Name</string>
     <string name="login_button_text">Login</string>
     <string name="sign_up_button_txt">Sign Up</string>
+    <string name="view_patients">View Patients</string>
+    <string name="logout">Logout</string>
 </resources>

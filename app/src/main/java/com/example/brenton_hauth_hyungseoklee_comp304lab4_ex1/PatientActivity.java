@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class PatientActivity
 
     private RecyclerView recyclerView;
     private PatientViewModel patientViewModel;
+    private Nurse nurse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +30,17 @@ public class PatientActivity
 
         initRecycler();
 
-        int nurseId = getNurseFromPrefs();
-        if (nurseId == -1) return;
-        LiveData<List<Patient>> patients = patientViewModel.getPatientsForNurse(nurseId);
-        onChanged(patients.getValue());
+        nurse = Nurse.fromPrefs(this);
+        if (nurse == null) {
+            Toast.makeText(this,
+                "You are not logged in!",
+                Toast.LENGTH_SHORT).show();
+        }
+
+        LiveData<List<Patient>> patients =
+            patientViewModel.getPatientsForNurse(nurse.getNurseID());
+
         patients.observe(this, this);
-    }
-
-    private int getNurseFromPrefs() {
-        SharedPreferences prefs = getSharedPreferences(LoginActivity.LOGIN_PREFS, 0);
-        String username = prefs.getString("username", null);
-        if (username == null) return -1;
-
-        try {
-            return Integer.parseInt(username);
-        } catch (Exception e) { return -1; }
     }
 
     private void initRecycler() {

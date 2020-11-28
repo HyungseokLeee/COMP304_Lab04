@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -39,10 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         prefs = getSharedPreferences(LOGIN_PREFS, 0);
 
         // Gets nurse's username from prefs
-        String username = prefs.getString("username", null);
+        Nurse nurse = Nurse.fromPrefs(prefs);
 
         // Quits the login activity if they are already logged in
-        if (username != null) {
+        if (nurse != null) {
             finish();
         }
 
@@ -71,13 +69,13 @@ public class LoginActivity extends AppCompatActivity {
         return key == KeyEvent.KEYCODE_BACK || super.onKeyDown(key, e);
     }
 
-    private boolean locateUser(String username, String password) {
+    private void locateUser(String username, String password) {
         if (username == null || password == null) {
-            return false;
+            return;
         }
         int usr;
         try { usr = Integer.parseInt(username); }
-        catch (Exception e) { return false; }
+        catch (Exception e) { return; }
 
         List<Nurse> all = patientViewModel.getAllNurses().getValue();
         Log.d("ALL NURSES:", "" + (all != null ? all.size() : -1));
@@ -93,11 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("LOGIN:OBSERVE(lambda)", "nurses.size() == " + nurses.size());
             } else {
                 // Saves the login data to the SharedPrefs
+                Nurse n = nurses.get(0);
                 Log.d("LOGIN:OBSERVE(lambda)",
-                        "Found nurse!  Id: " + nurses.get(0).getNurseID());
-                SharedPreferences.Editor edit = prefs.edit();
-                edit.putString("username", username);
-                edit.apply();
+                        "Found nurse!  Id: " + n.getNurseID());
+                Nurse.saveToPrefs(prefs, n);
                 finish(); // closes and returns to MainActivity
             }
         });
@@ -105,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         // return true if found,
         // otherwise return false
         // ...
-        return true;
     }
 
     private String validateField(EditText field, Pattern pattern, int errMsg) {

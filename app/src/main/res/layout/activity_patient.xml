@@ -6,23 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientActivity">
-
-<!--    <EditText
-        android:id="@+id/editTextPatientFirstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="50dp"
-        android:ems="10"
-        android:hint="@string/edit_text_username_hint"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/addPatientButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/patientRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/addPatientButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

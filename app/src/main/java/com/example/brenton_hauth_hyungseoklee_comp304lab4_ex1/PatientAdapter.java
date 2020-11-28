@@ -54,7 +54,7 @@ public class PatientAdapter
 
         public PatientViewHolder(@NonNull View view) {
             super(view);
-            patientTextView = view.findViewById(R.id.patientTextView);
+            patientTextView = view.findViewById(R.id.patientIdTextView);
             // ...
         }
 
