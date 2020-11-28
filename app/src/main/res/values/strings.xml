@@ -2,7 +2,14 @@
     <string name="app_name">Brenton_Hauth_Hyungseoklee_COMP304Lab4_Ex1</string>
     <string name="password_err_msg">Must be 8 to 32 characters long</string>
     <string name="username_err_msg">Must have a minimum of 8 characters</string>
+    <string name="first_name_err_msg">First name must only contain letters</string>
+    <string name="last_name_err_msg">Last name must only contain letters</string>
+    <string name="department_err_msg">Department must be a minimum of 2 characters</string>
     <string name="edit_text_username_hint">Username</string>
     <string name="edit_text_password_hint">Password</string>
+    <string name="edit_text_department_hint">Department</string>
+    <string name="edit_text_first_name_hint">First Name</string>
+    <string name="edit_text_last_name_hint">Last Name</string>
     <string name="login_button_text">Login</string>
+    <string name="sign_up_button_txt">Sign Up</string>
 </resources>

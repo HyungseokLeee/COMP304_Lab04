@@ -3,9 +3,11 @@ package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -58,6 +60,18 @@ public class LoginActivity extends AppCompatActivity {
             edit.apply();
             finish(); // closes and returns to MainActivity
         }
+    }
+
+    public void onSignUpTextClick(View v) {
+        Intent in = new Intent(this, SignUpActivity.class);
+        startActivity(in);
+    }
+
+    @Override
+    public boolean onKeyDown(int key, KeyEvent e) {
+        // Overrides the back button so user
+        // can't back out of login activity
+        return key == KeyEvent.KEYCODE_BACK || super.onKeyDown(key, e);
     }
 
     private boolean locateUser(String username, String password) {

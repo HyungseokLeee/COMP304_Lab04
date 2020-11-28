@@ -44,5 +44,13 @@
         android:onClick="onLoginButtonClick"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
 
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
+        android:text="@string/sign_up_button_txt"
+        android:onClick="onSignUpTextClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
