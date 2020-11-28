@@ -89,44 +89,4 @@ public class Nurse {
     public String getFullName() {
         return firstName + " " + lastName;
     }
-
-
-    public static Nurse fromPrefs(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(LoginActivity.LOGIN_PREFS, 0);
-        return fromPrefs(prefs);
-    }
-
-    public static Nurse fromPrefs(SharedPreferences prefs) {
-        Nurse nurse = new Nurse();
-        try {
-            nurse.setNurseID(Integer.parseInt(stringFromPref(prefs, PREF_NURSE_ID)));
-            nurse.setFirstName(stringFromPref(prefs, PREF_NURSE_FIRST_NAME));
-            nurse.setLastName(stringFromPref(prefs, PREF_NURSE_LAST_NAME));
-            nurse.setDepartment(stringFromPref(prefs, PREF_NURSE_DEPARTMENT));
-            nurse.setPassword(stringFromPref(prefs, PREF_NURSE_PASSWORD));
-        } catch (Exception e) { return null; }
-        return nurse;
-    }
-
-    public static void saveToPrefs(SharedPreferences prefs, Nurse nurse) {
-        SharedPreferences.Editor edit = prefs.edit();
-        if (nurse == null) {
-            edit.clear();
-            edit.apply();
-            return;
-        }
-
-        edit.putString(PREF_NURSE_ID, Integer.toString(nurse.getNurseID()));
-        edit.putString(PREF_NURSE_FIRST_NAME, nurse.getFirstName());
-        edit.putString(PREF_NURSE_LAST_NAME, nurse.getLastName());
-        edit.putString(PREF_NURSE_DEPARTMENT, nurse.getDepartment());
-        edit.putString(PREF_NURSE_PASSWORD, nurse.getPassword());
-        edit.apply();
-    }
-
-    private static String stringFromPref(SharedPreferences p, String n) throws Exception {
-        String value = p.getString(n, null);
-        if (value == null) throw new Exception();
-        return value;
-    }
 }

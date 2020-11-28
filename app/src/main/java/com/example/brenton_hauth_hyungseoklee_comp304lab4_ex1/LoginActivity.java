@@ -12,12 +12,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String LOGIN_PREFS = "login";
 
     private static final Pattern
             usernamePattern = Pattern.compile("^[\\w]{8,}$", Pattern.CASE_INSENSITIVE),
@@ -25,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameText, passwordText;
 
-    private SharedPreferences prefs;
+    private SharedPreferences loginPrefs;
     private PatientViewModel patientViewModel;
 
     @Override
@@ -34,13 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
-        prefs = getSharedPreferences(LOGIN_PREFS, 0);
-
-        // Gets nurse's username from prefs
-        Nurse nurse = Nurse.fromPrefs(prefs);
+        loginPrefs = PrefsHelper.getLoginPrefs(this);
 
         // Quits the login activity if they are already logged in
-        if (nurse != null) {
+        if (PrefsHelper.hasSavedNurse(loginPrefs)) {
             finish();
         }
 
@@ -91,10 +89,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("LOGIN:OBSERVE(lambda)", "nurses.size() == " + nurses.size());
             } else {
                 // Saves the login data to the SharedPrefs
-                Nurse n = nurses.get(0);
+                Nurse nurse = nurses.get(0);
                 Log.d("LOGIN:OBSERVE(lambda)",
-                        "Found nurse!  Id: " + n.getNurseID());
-                Nurse.saveToPrefs(prefs, n);
+                        "Found nurse!  Id: " + nurse.getNurseID());
+                PrefsHelper.saveNurse(loginPrefs, nurse);
                 finish(); // closes and returns to MainActivity
             }
         });

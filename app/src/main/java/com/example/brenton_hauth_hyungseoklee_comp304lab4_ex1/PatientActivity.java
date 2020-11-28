@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
+
 import java.util.List;
 
 public class PatientActivity
@@ -30,17 +32,19 @@ public class PatientActivity
 
         initRecycler();
 
-        nurse = Nurse.fromPrefs(this);
-        if (nurse == null) {
+        nurse = new Nurse();
+
+        SharedPreferences loginPrefs = PrefsHelper.getLoginPrefs(this);
+
+        if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
+            LiveData<List<Patient>> patients =
+                    patientViewModel.getPatientsForNurse(nurse.getNurseID());
+            patients.observe(this, this);
+        } else {
             Toast.makeText(this,
                 "You are not logged in!",
                 Toast.LENGTH_SHORT).show();
         }
-
-        LiveData<List<Patient>> patients =
-            patientViewModel.getPatientsForNurse(nurse.getNurseID());
-
-        patients.observe(this, this);
     }
 
     private void initRecycler() {

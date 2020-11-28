@@ -14,9 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
+
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences prefs;
+    private SharedPreferences loginPrefs;
     private Nurse nurse;
     private TextView welcomeTextView;
 
@@ -24,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        prefs = getSharedPreferences(LoginActivity.LOGIN_PREFS, 0);
+        nurse = new Nurse();
 
         welcomeTextView = findViewById(R.id.mainWelcomeTextView);
+        loginPrefs = PrefsHelper.getLoginPrefs(this);
 
         // clearUsername(); // For testing, will clear the login every time
     }
@@ -39,18 +41,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIfLoggedIn() {
-        nurse = Nurse.fromPrefs(prefs);
-        if (nurse == null) {
-            Log.d("MAIN:checkIfLoggedIn", "Nurse is null!");
-            launchLoginActivity();
-        } else {
-            Log.d("MAIN:checkIfLoggedIn",
-                    "Found nurse!  Id: " + nurse.getNurseID());
-
+        if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
             String text = String.format("Welcome, %s (%s)!",
                     nurse.getFullName(), nurse.getNurseID());
 
             welcomeTextView.setText(text);
+        } else {
+            Log.d("MAIN:checkIfLoggedIn", "Nurse is null!");
+            launchLoginActivity(); Log.d("MAIN:checkIfLoggedIn",
+                    "Found nurse!  Id: " + nurse.getNurseID());
         }
     }
 
@@ -72,19 +71,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogoutButtonClick(View v) {
-        Nurse.saveToPrefs(prefs, null);
+        PrefsHelper.saveNurse(loginPrefs, null);
         launchLoginActivity();
     }
 
     private void launchLoginActivity() {
         Intent in = new Intent(this, LoginActivity.class);
         startActivity(in);
-    }
-
-    private void clearUsername() {
-        Nurse.saveToPrefs(prefs, null);
-//        SharedPreferences.Editor edit = prefs.edit();
-//        edit.putString("username", null);
-//        edit.apply();
     }
 }
