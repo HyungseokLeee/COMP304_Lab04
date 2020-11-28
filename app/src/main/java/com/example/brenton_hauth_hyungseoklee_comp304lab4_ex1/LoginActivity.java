@@ -1,17 +1,20 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,6 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         int usr;
         try { usr = Integer.parseInt(username); }
         catch (Exception e) { return false; }
+
+        List<Nurse> all = patientViewModel.getAllNurses().getValue();
+        Log.d("ALL NURSES:", "" + (all != null ? all.size() : -1));
 
         Nurse nurse = patientViewModel.getNurseByLoginInfo(usr, password);
         if (nurse == null) return false;

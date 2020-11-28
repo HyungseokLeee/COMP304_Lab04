@@ -9,9 +9,12 @@ import java.util.List;
 public interface NurseDao {
     @Insert
     void insert(Nurse nurse);
-    @Query("select * from nurse order by firstName and lastName")
+    @Query("select * from Nurse order by firstName and lastName")
     LiveData<List<Nurse>> getAllNurse();
 
-    @Query("select * from nurse where nurseID = :nId and password = :pwd")
+    @Query("select * from Nurse where nurseID = :nId or password = :pwd;")
     LiveData<List<Nurse>> getNurseByLoginInfo(int nId, String pwd);
+
+    @Query("select * from Nurse where nurseID = :nId;")
+    LiveData<List<Nurse>> getNurseById(int nId);
 }

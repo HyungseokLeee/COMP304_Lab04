@@ -1,5 +1,7 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 import android.app.Application;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
@@ -48,7 +50,14 @@ public class PatientRoomRepository {
     }
 
     LiveData<List<Nurse>> getNurseByLoginInfo(int nurseId, String password) {
-        return mNurseDao.getNurseByLoginInfo(nurseId, password);
+        LiveData<List<Nurse>> nurses = mNurseDao.getNurseById(nurseId);//, password);
+        List<Nurse> list = nurses.getValue();
+        if (list != null) {
+            Log.d("PATIENT_ROOM_REPOSITORY", "List size: " + list.size());
+        } else {
+            Log.d("PATIENT_ROOM_REPOSITORY", "List is NULL!!!");
+        }
+        return nurses;
     }
 
     void insertPatient(Patient patient)
@@ -67,6 +76,10 @@ public class PatientRoomRepository {
     {
         PatientRoomDatabase.databaseWriteExecutor.execute(()->{
             mNurseDao.insert(nurse);
+            LiveData<List<Nurse>> data = mNurseDao.getNurseByLoginInfo(
+                    nurse.getNurseID(), nurse.getPassword());
+            List<Nurse> list = data.getValue();
+            Log.d("execute(:lambda:)", "" + (list != null ? list.size() : -1));
         });
     }
 }

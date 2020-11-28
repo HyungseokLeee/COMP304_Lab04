@@ -38,7 +38,7 @@ public class PatientViewModel extends AndroidViewModel {
     public Nurse getNurseByLoginInfo(int nurseId, String password) {
         LiveData<List<Nurse>> liveData = mRepository.getNurseByLoginInfo(nurseId, password);
         List<Nurse> nurses = liveData.getValue();
-        return (nurses.size() != 1) ? null : nurses.get(0);
+        return nurses != null ? nurses.get(0) : null;
     }
 
     public LiveData<List<Patient>> getAllPatients() { return mAllPatients; }

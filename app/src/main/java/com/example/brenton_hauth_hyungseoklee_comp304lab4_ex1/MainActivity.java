@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences(LoginActivity.LOGIN_PREFS, 0);
 
-        clearUsername(); // For testing, will clear the login every time
+        // clearUsername(); // For testing, will clear the login every time
 
         checkIfLoggedIn();
     }
