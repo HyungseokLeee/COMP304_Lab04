@@ -51,51 +51,25 @@ public class PatientRoomRepository {
     }
 
     LiveData<List<Nurse>> getNurseByLoginInfo(int nurseId, String password) {
-        LiveData<List<Nurse>> nurses = mNurseDao.getNurseByLoginInfo(nurseId, password);
-        List<Nurse> list = nurses.getValue();
-
-        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
-            LiveData<List<Nurse>> data = mNurseDao.getAllNurse();
-            int s = 0;
-            try {
-                s = data.getValue().size();
-            } catch (Exception e) {
-                s = -1;
-            }
-
-            Log.d("THREAD->EXECUTE", Integer.toString(s));
-        });
-
-        if (list != null) {
-            Log.d("PATIENT_ROOM_REPOSITORY", "List size: " + list.size());
-        } else {
-            Log.d("PATIENT_ROOM_REPOSITORY", "List is NULL!!!");
-        }
-        return nurses;
+        return mNurseDao.getNurseByLoginInfo(nurseId, password);
     }
 
     void insertPatient(Patient patient)
     {
-        PatientRoomDatabase.databaseWriteExecutor.execute(()->{
+        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
             mPatientDao.insert(patient);
         });
     }
     void insertTest(Test test)
     {
-        PatientRoomDatabase.databaseWriteExecutor.execute(()->{
+        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
             mTestDao.insert(test);
         });
     }
     void insertNurse(Nurse nurse)
     {
-        PatientRoomDatabase.databaseWriteExecutor.execute(()->{
+        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
             mNurseDao.insert(nurse);
         });
     }
 }
-/*
-            LiveData<List<Nurse>> data = mNurseDao.getNurseByLoginInfo(
-                    nurse.getNurseID(), nurse.getPassword());
-            List<Nurse> list = data.getValue();
-            Log.d("execute(:lambda:)", "" + (list != null ? list.size() : -1));
- */

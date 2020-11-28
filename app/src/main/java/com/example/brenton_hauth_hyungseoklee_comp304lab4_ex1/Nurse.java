@@ -14,15 +14,6 @@ import androidx.room.PrimaryKey;
 //        password
 @Entity
 public class Nurse {
-
-    private static final String
-        PREF_NURSE_ID = "nurse_username",
-        PREF_NURSE_FIRST_NAME = "nurse_first_name",
-        PREF_NURSE_LAST_NAME = "nurse_last_name",
-        PREF_NURSE_DEPARTMENT = "nurse_department",
-        PREF_NURSE_PASSWORD = "nurse_password";
-
-
     // May be better to have nurseID as a String, because it is also a username
     @PrimaryKey
     @NonNull

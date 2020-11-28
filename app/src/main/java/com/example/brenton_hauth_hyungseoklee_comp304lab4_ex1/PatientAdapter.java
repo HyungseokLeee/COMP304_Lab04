@@ -89,9 +89,9 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
             String temp;
 
             if (id == R.id.patientViewTestsButton) {
-                temp = "View Patient Tests";
+                temp = "View Patient Tests " + patient.getPatientId();
             } else if (id == R.id.patientEditButton) {
-                temp = "Edit Patient";
+                temp = "Edit Patient " + patient.getPatientId();
             } else {
                 Log.d("PATIENT_VH:onClick", id + " did not match!");
                 return;

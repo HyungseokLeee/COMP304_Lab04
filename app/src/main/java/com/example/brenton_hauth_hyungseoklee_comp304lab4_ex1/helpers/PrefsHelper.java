@@ -3,7 +3,6 @@ package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.LoginActivity;
 import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.Nurse;
 
 public class PrefsHelper {
