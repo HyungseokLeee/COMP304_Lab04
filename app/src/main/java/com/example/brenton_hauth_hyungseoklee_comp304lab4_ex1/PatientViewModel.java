@@ -35,10 +35,10 @@ public class PatientViewModel extends AndroidViewModel {
     }
 
     // may change logic, what do you think?
-    public Nurse getNurseByLoginInfo(int nurseId, String password) {
-        LiveData<List<Nurse>> liveData = mRepository.getNurseByLoginInfo(nurseId, password);
-        List<Nurse> nurses = liveData.getValue();
-        return nurses != null ? nurses.get(0) : null;
+    public LiveData<List<Nurse>> getNurseByLoginInfo(int nurseId, String password) {
+        //List<Nurse> nurses = liveData.getValue();
+        //return nurses != null ? nurses.get(0) : null;
+        return mRepository.getNurseByLoginInfo(nurseId, password);
     }
 
     public LiveData<List<Patient>> getAllPatients() { return mAllPatients; }
@@ -48,4 +48,6 @@ public class PatientViewModel extends AndroidViewModel {
     public void insert(Patient patient) { mRepository.insertPatient(patient); }
     public void insert(Nurse nurse) { mRepository.insertNurse(nurse); }
     public void insert(Test test) { mRepository.insertTest(test); }
+
+    // public interface GetItemCallback<T> { void onItem(T item); }
 }

@@ -1,13 +1,16 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -27,12 +30,29 @@ public class SignUpActivity extends AppCompatActivity {
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
         nurse = new Nurse();
+        nurse.setNurseID(-1);
 
         signUpFirstName = findViewById(R.id.signUpFirstName);
         signUpLastName = findViewById(R.id.signUpLastName);
         signUpDepartment = findViewById(R.id.signUpDepartment);
         signUpUsername = findViewById(R.id.signUpUsername);
         signUpPassword = findViewById(R.id.signUpPassword);
+
+        patientViewModel.getAllNurses().observe(this, nurses -> {
+            if (nurses == null) {
+                Log.d("SIGN_UP:OBSERVE(lambda)", "Nurses was null!!!");
+                return;
+            }
+            for (Nurse n : nurses) {
+                if (n.getNurseID() == nurse.getNurseID()) {
+                    Log.d("SIGN_UP:OBSERVE(lambda)",
+                            "Found nurse with id: " + n.getNurseID());
+                    finish();
+                    return;
+                }
+            }
+            Log.d("SIGN_UP:OBSERVE(lambda)", "Could not locate nurse!");
+        });
     }
 
 
@@ -71,9 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(this,
                     "Could not sign up.",
                     Toast.LENGTH_SHORT).show();
-                return;
             }
-            finish();
         }
     }
 
