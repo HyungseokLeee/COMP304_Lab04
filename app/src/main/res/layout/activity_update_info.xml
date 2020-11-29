@@ -14,15 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/updateTestInfoButton">
 
         <EditText
-            android:id="@+id/editTextTextPatientId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/edit_text_patientId_hint"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editTextFirstName"
+            android:id="@+id/editTextBPL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -30,7 +22,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextLastName"
+            android:id="@+id/editTextTestId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -38,7 +30,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextDepartment"
+            android:id="@+id/editTextBPH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -46,15 +38,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextNurseId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/edit_text_nurseId_hint"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editTextRoom"
+            android:id="@+id/editTextTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
