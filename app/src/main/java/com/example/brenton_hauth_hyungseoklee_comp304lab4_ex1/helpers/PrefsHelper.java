@@ -48,15 +48,13 @@ public class PrefsHelper {
         SharedPreferences.Editor edit = prefs.edit();
         if (nurse == null) {
             edit.clear();
-            edit.apply();
-            return;
+        } else {
+            edit.putString(PREF_NURSE_ID, Integer.toString(nurse.getNurseID()));
+            edit.putString(PREF_NURSE_FIRST_NAME, nurse.getFirstName());
+            edit.putString(PREF_NURSE_LAST_NAME, nurse.getLastName());
+            edit.putString(PREF_NURSE_DEPARTMENT, nurse.getDepartment());
+            edit.putString(PREF_NURSE_PASSWORD, nurse.getPassword());
         }
-
-        edit.putString(PREF_NURSE_ID, Integer.toString(nurse.getNurseID()));
-        edit.putString(PREF_NURSE_FIRST_NAME, nurse.getFirstName());
-        edit.putString(PREF_NURSE_LAST_NAME, nurse.getLastName());
-        edit.putString(PREF_NURSE_DEPARTMENT, nurse.getDepartment());
-        edit.putString(PREF_NURSE_PASSWORD, nurse.getPassword());
         edit.apply();
     }
 

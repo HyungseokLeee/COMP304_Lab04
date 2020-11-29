@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Brenton_Hauth_Hyungseoklee_COMP304Lab4_Ex1</string>
     <string name="password_err_msg">Must be 8 to 32 characters long</string>
-    <string name="username_err_msg">Must have a minimum of 8 characters</string>
-    <string name="first_name_err_msg">First name must only contain letters</string>
+    <string name="username_err_msg">Must be a number with a minimum of 8 digits</string>
+    <string name="name_err_msg">Name must only contain letters</string>
     <string name="last_name_err_msg">Last name must only contain letters</string>
     <string name="department_err_msg">Department must be a minimum of 2 characters</string>
     <string name="edit_text_username_hint">Username</string>
@@ -23,6 +23,7 @@
     <string name="button_push">Enter</string>
     <string name="edit_text_testId_hint">Test ID(only integers)</string>
     <string name="edit_text_patientId_hint">Patient ID(only integers)</string>
+    <string name="edit_text_patientId_v2_hint">Patient ID (Optional)</string>
     <string name="edit_text_nurseId_hint">Nurse ID(only integers)</string>
     <string name="edit_text_BPL_hint">BPL(only integers)</string>
     <string name="edit_text_BPH_hint">BPH(only integers)</string>
