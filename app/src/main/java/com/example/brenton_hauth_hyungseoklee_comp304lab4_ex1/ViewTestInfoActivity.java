@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,5 +75,12 @@ public class ViewTestInfoActivity
     public void onChanged(List<Test> tests) {
         TestAdapter adapter = new TestAdapter(tests);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void onAddTestButtonClick(View v) {
+        // TODO: navigate to TestActivity to add more Tests
+        Toast.makeText(this,
+            "Add new test for " + patientId,
+            Toast.LENGTH_SHORT).show();
     }
 }
