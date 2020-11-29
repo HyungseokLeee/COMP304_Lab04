@@ -16,7 +16,14 @@
     <string name="view_patients">View Patients</string>
     <string name="logout">Logout</string>
     <string name="view_tests">View tests</string>
+    <string name="enter_test">Enter test</string>
     <string name="edit_patient_button_text">Edit</string>
     <string name = "testActivityTitle">Test List</string>
     <string name = "button_push">Enter</string>
+    <string name="edit_text_testId_hint">Test ID(only integers)</string>
+    <string name="edit_text_patientId_hint">Patient ID(only integers)</string>
+    <string name="edit_text_nurseId_hint">Nurse ID(only integers)</string>
+    <string name="edit_text_BPL_hint">BPL(only integers)</string>
+    <string name="edit_text_BPH_hint">BPH(only integers)</string>
+    <string name="edit_text_temperature_hint">Temperature(Float)</string>
 </resources>

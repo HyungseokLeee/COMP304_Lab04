@@ -6,47 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/editTextTextTestId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_testId_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextTextPatientId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_patientId_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextNurseId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_nurseId_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextTextBPL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_BPL_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextTextBPH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_BPH_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextTextTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_temperature_hint"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/EnterTestInfoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="141dp"
+            android:onClick="insertTest"
+            android:text="Enter"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="270dp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/testListTextView"
+        android:id="@+id/TitletextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:text="Enter Test"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testTitleTextView" />
-
-    <TextView
-        android:id="@+id/testTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/testActivityTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientIdFormPlainText" />
-
-    <EditText
-        android:id="@+id/patientIdFormPlainText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/patientId_Form_hint"
-        android:inputType="textPersonName|text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/patientIdEnterButton"
-        android:layout_width="70dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:onClick="onClickPatientIdButton"
-        android:text="@string/button_push"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/patientIdFormPlainText"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,12 +30,12 @@
         app:layout_constraintTop_toBottomOf="@id/mainWelcomeTextView" />
 
     <TextView
-        android:id="@+id/mainTestTextView"
+        android:id="@+id/mainEnterTestTextView"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="onNavigationItemClick"
-        android:text="@string/view_tests"
+        android:text="@string/enter_test"
         android:textColor="@color/design_default_color_secondary"
         android:textSize="12pt"
         app:layout_constraintEnd_toEndOf="parent"
