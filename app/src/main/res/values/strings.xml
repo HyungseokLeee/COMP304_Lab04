@@ -26,4 +26,5 @@
     <string name="edit_text_BPL_hint">BPL(only integers)</string>
     <string name="edit_text_BPH_hint">BPH(only integers)</string>
     <string name="edit_text_temperature_hint">Temperature(Float)</string>
+    <string name="add_test">Add Test</string>
 </resources>
