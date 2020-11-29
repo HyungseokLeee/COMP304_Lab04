@@ -15,7 +15,9 @@ import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelpe
 
 import java.util.List;
 
-public class UpdateInfoActivity extends AppCompatActivity {
+public class UpdateInfoActivity
+        extends AppCompatActivity
+        implements Observer<List<Patient>> {
 
     private PatientViewModel patientViewModel;
     private TextView patientInfoTextView;
@@ -26,10 +28,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
     private TextView editTextRoom;
     private TextView patientIdTextView;
 
-    private SharedPreferences loginPrefs;
-    private Nurse nurse;
-    private int nurseId;
-    private int patientId;
+    private int nurseId, patientId;
     private Patient currentPatient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,81 +47,87 @@ public class UpdateInfoActivity extends AppCompatActivity {
 
         Intent in = getIntent();
         patientId = in.getIntExtra(Patient.PATIENT_ID_EXTRA, -1);
+        SharedPreferences loginPrefs = PrefsHelper.getLoginPrefs(this);
 
-/*        nurse = new Nurse();
-        loginPrefs = PrefsHelper.getLoginPrefs(this);*/
-        getList(patientId);
-    }
-/*    @Override
-    protected void onStart() {
-        super.onStart();
-        //getNurseId();
-        getList();
-        //Toast.makeText(this.getApplicationContext(),""+nurseId,Toast.LENGTH_SHORT).show();
-    }
-*//*    public void getNurseId()
-    {
-        if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
+        // HAVE to set nurse to an empty object
+        Nurse nurse = new Nurse();
+        nurseId = -1;
+
+        // Only gets list if we passed a patientId, and we have a saved nurse
+        if (patientId != -1 && PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
             nurseId = nurse.getNurseID();
+            getList();
+        } else {
+            // Displays an error message if there's any issues
+            Toast.makeText(this,
+                String.format("Issue with either Patient (%s) or nurse. (%s)",
+                        patientId, nurseId),
+                Toast.LENGTH_SHORT).show();
         }
-    }*/
-    public void getList(int patientId) {
-        patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
-            @Override
-            public void onChanged(List<Patient> patients) {
-                String output = "";
-                for(Patient patient : patients)
-                {
-                    if(patient.getPatientId() == patientId)
-                    {
-                        output += "Patient ID: " + patient.getPatientId()
-                                + "\nName: " + patient.getFirstName() + " " + patient.getLastName()
-                                + "\nDepartment: " + patient.getDepartment()
-                                + "\nNurse ID: " + patient.getNurseId()
-                                + "\nRoom: " + patient.getRoom();
-                        currentPatient = patient;
-                    }
-                    patientInfoTextView.setText(output);
-                }
-            }
-        });
     }
-    public void update(View view)
-    {
 
+    public void getList() {
+        // Binds to class directly instead of creating a lambda (is cheaper on resources)
+        patientViewModel.getAllPatients().observe(this, this);
+    }
+
+    @Override // from implementing 'Observer<List<Patient>>'
+    public void onChanged(List<Patient> patients) {
+        for(Patient patient : patients) {
+            // Checking id, instead of "currentPatient == patient";
+            if(patient.getPatientId() == patientId) {
+
+                String output = "Patient ID: " + patient.getPatientId()
+                        + "\nName: " + patient.getFirstName() + " " + patient.getLastName()
+                        + "\nDepartment: " + patient.getDepartment()
+                        + "\nNurse ID: " + patient.getNurseId()
+                        + "\nRoom: " + patient.getRoom();
+                currentPatient = patient;
+                patientInfoTextView.setText(output);
+                // Added break because, we don't need to continue
+                // looping when we found the patient
+                break;
+            }
+        }
+    }
+
+    public void update(View view) {
         try {
-            int newPatientId = Integer.parseInt(patientIdTextView.getText().toString());
+            // TODO: Disable 'patientIdTextView' and 'nurseIdTextView'
+            // If you want, you can use editText.setError() to give the user a specific error
+            //int newPatientId = Integer.parseInt(patientIdTextView.getText().toString());
+
             String newFirstName = editTextFirstName.getText().toString();
             String newLastName = editTextLastName.getText().toString();
             String newDepartment = editTextDepartment.getText().toString();
-            int newNurseId = Integer.parseInt(nurseIdTextView.getText().toString());
+            //int newNurseId = Integer.parseInt(nurseIdTextView.getText().toString());
             String newRoom = editTextRoom.getText().toString();
-            patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
-                @Override
-                public void onChanged(List<Patient> patients) {
-                    for(Patient patient : patients)
-                    {
-                        if(patient == currentPatient)
-                        {
-/*                            patient.setPatientId(newPatientId);
-                            patient.setFirstName(newFirstName);
-                            patient.setLastName(newLastName);
-                            patient.setDepartment(newDepartment);
-                            patient.setNurseId(newNurseId);
-                            patient.setRoom(newRoom);
-                            patientViewModel.update(patient);*/
-                            patientViewModel.delete(patient);
-                            Patient newPatient = new Patient(newPatientId,newFirstName,newLastName,newDepartment,newNurseId,newRoom);
-                            patientViewModel.insert(newPatient);
-                        }
-                    }
-                    getList(newPatientId);
-                }
-            });
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(this.getApplicationContext(),"Updatingg is failed. Please check values are correctly typed.",Toast.LENGTH_SHORT).show();
+            // Removed observer
+            // if nothing is entered, use currentPatient to fill the empty fields.
+            Patient newPatient = new Patient(
+                patientId, // PK don't change,
+                newFirstName.isEmpty()
+                    ? currentPatient.getFirstName()
+                    : newFirstName,
+                newLastName.isEmpty()
+                    ? currentPatient.getLastName()
+                    : newLastName,
+                newDepartment.isEmpty()
+                    ? currentPatient.getDepartment()
+                    : newDepartment,
+                nurseId, // FK don't change
+                newRoom.isEmpty()
+                    ? currentPatient.getRoom()
+                    : newRoom
+            );
+            // Calling update works when all fields are filled
+            patientViewModel.update(newPatient);
+            // we don't need to call getList() here because we're observing it
+        } catch(Exception e) {
+            // System.err.println(e);
+            Toast.makeText(this,
+                    "Updating failed. Please check values are correctly typed.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }
