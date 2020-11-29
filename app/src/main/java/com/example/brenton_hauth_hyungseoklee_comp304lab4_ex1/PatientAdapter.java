@@ -1,6 +1,7 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,17 +87,23 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         @Override
         public void onClick(View v) {
             int id = v.getId();
-            String temp;
+            Intent in;
 
             if (id == R.id.patientViewTestsButton) {
-                temp = "View Patient Tests " + patient.getPatientId();
+                in = new Intent(v.getContext(), ViewTestInfoActivity.class);
+                in.putExtra(Patient.PATIENT_ID_EXTRA, patient.getPatientId());
+                in.putExtra(Patient.PATIENT_NAME_EXTRA, patient.getFullName());
+
             } else if (id == R.id.patientEditButton) {
-                temp = "Edit Patient " + patient.getPatientId();
+                Toast.makeText(v.getContext(),
+                        "Not yet implemented " + patient.getPatientId(),
+                        Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 Log.d("PATIENT_VH:onClick", id + " did not match!");
                 return;
             }
-            Toast.makeText(v.getContext(), temp, Toast.LENGTH_SHORT).show();
+            v.getContext().startActivity(in);
         }
     }
     //--------------------------------------------------
