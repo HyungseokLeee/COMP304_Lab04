@@ -69,6 +69,11 @@ public class PatientActivity
                 "You are not logged in!",
                 Toast.LENGTH_SHORT).show();
         }
+        /*patientViewModel.insert(new Patient(107983021, "Jaakkima", "Romilly", nurse.getDepartment(), nurse.getNurseID(), "D-14"));
+        patientViewModel.insert(new Patient(107983027, "September", "Sweet", nurse.getDepartment(), nurse.getNurseID(), "A-19"));
+        patientViewModel.insert(new Patient(107983034, "Leanne", "Norman", nurse.getDepartment(), nurse.getNurseID(), "H-23"));
+        patientViewModel.insert(new Patient(107983039, "Bram", "Strong", nurse.getDepartment(), nurse.getNurseID(), "F-13"));
+        patientViewModel.insert(new Patient(107983044, "Nikki", "Hamilton", nurse.getDepartment(), nurse.getNurseID(), "J-28"));*/
     }
 
     private void initRecycler() {

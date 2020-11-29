@@ -50,6 +50,19 @@ public class PatientRoomRepository {
     {
         PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
             mPatientDao.insert(patient);
+            mPatientDao.update(patient);
+        });
+    }
+    void updatePatient(Patient patient)
+    {
+        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPatientDao.update(patient);
+        });
+    }
+    void deletePatient(Patient patient)
+    {
+        PatientRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPatientDao.delete(patient);
         });
     }
     void insertTest(Test test)

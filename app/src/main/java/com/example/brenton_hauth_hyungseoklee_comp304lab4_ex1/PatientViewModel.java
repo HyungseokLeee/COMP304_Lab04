@@ -46,6 +46,8 @@ public class PatientViewModel extends AndroidViewModel {
     public LiveData<List<Test>> getAllTests() { return mAllTests; }
 
     public void insert(Patient patient) { mRepository.insertPatient(patient); }
+    public void update(Patient patient) {mRepository.updatePatient(patient);}
+    public void delete(Patient patient) {mRepository.deletePatient(patient);}
     public void insert(Nurse nurse) { mRepository.insertNurse(nurse); }
     public void insert(Test test) { mRepository.insertTest(test); }
 
