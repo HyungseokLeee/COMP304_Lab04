@@ -29,6 +29,9 @@ public class ViewTestInfoActivity
 
     private TextView testInfoPatientId;
 
+    private Nurse nurse;
+    private int nurseId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,5 +85,9 @@ public class ViewTestInfoActivity
         Toast.makeText(this,
             "Add new test for " + patientId,
             Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,TestActivity.class);
+        intent.putExtra(Patient.PATIENT_ID_EXTRA,patientId);
+/*        intent.putExtra()*/
+        v.getContext().startActivity(intent);
     }
 }

@@ -39,33 +39,30 @@ public class UpdateInfoActivity extends AppCompatActivity {
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
         patientInfoTextView = findViewById(R.id.patientInfoTextView);
-        patientIdTextView = findViewById(R.id.editTextTextPatientId);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextDepartment = findViewById(R.id.editTextDepartment);
-        nurseIdTextView = findViewById(R.id.editTextNurseId);
         editTextRoom = findViewById(R.id.editTextRoom);
 
         Intent in = getIntent();
         patientId = in.getIntExtra(Patient.PATIENT_ID_EXTRA, -1);
 
-/*        nurse = new Nurse();
-        loginPrefs = PrefsHelper.getLoginPrefs(this);*/
+        nurse = new Nurse();
+        loginPrefs = PrefsHelper.getLoginPrefs(this);
         getList(patientId);
     }
-/*    @Override
+    @Override
     protected void onStart() {
         super.onStart();
-        //getNurseId();
-        getList();
-        //Toast.makeText(this.getApplicationContext(),""+nurseId,Toast.LENGTH_SHORT).show();
+        getNurseId();
+        Toast.makeText(this.getApplicationContext(),""+nurseId,Toast.LENGTH_SHORT).show();
     }
-*//*    public void getNurseId()
+    public void getNurseId()
     {
         if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
             nurseId = nurse.getNurseID();
         }
-    }*/
+    }
     public void getList(int patientId) {
         patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
             @Override
@@ -91,11 +88,9 @@ public class UpdateInfoActivity extends AppCompatActivity {
     {
 
         try {
-            int newPatientId = Integer.parseInt(patientIdTextView.getText().toString());
             String newFirstName = editTextFirstName.getText().toString();
             String newLastName = editTextLastName.getText().toString();
             String newDepartment = editTextDepartment.getText().toString();
-            int newNurseId = Integer.parseInt(nurseIdTextView.getText().toString());
             String newRoom = editTextRoom.getText().toString();
             patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
                 @Override
@@ -112,11 +107,11 @@ public class UpdateInfoActivity extends AppCompatActivity {
                             patient.setRoom(newRoom);
                             patientViewModel.update(patient);*/
                             patientViewModel.delete(patient);
-                            Patient newPatient = new Patient(newPatientId,newFirstName,newLastName,newDepartment,newNurseId,newRoom);
+                            Patient newPatient = new Patient(patientId,newFirstName,newLastName,newDepartment,nurseId,newRoom);
                             patientViewModel.insert(newPatient);
                         }
                     }
-                    getList(newPatientId);
+                    //getList(patientId);
                 }
             });
         }
