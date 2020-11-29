@@ -1,17 +1,12 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
@@ -61,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.mainPatientsTextView) {
             activity = PatientActivity.class;
         // } else if () {
-        } else {
+        }
+        if(id == R.id.mainEnterTestTextView)
+        {
+            activity = TestActivity.class;
+        }
+        else {
             Log.d("MAIN:onNavItemClick", "view Id did not match!");
             return;
         }

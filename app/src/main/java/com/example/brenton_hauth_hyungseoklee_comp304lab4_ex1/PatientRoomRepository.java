@@ -11,7 +11,6 @@ public class PatientRoomRepository {
     private PatientDao mPatientDao;
     private TestDao mTestDao;
     private NurseDao mNurseDao;
-    private PatientTestDao mPatientTestDao;
 
     private LiveData<List<Patient>> mAllPatients;
     private LiveData<List<Test>> mAllTests;
@@ -23,7 +22,6 @@ public class PatientRoomRepository {
         mPatientDao = db.PatientDao();
         mTestDao = db.TestDao();
         mNurseDao = db.NurseDao();
-        mPatientTestDao = db.PatientTestDao();
 
         mAllPatients = mPatientDao.getAllPatients();
         mAllTests = mTestDao.getAllTest();
@@ -34,12 +32,6 @@ public class PatientRoomRepository {
     LiveData<List<Patient>> getAllPatients() { return mAllPatients; }
     LiveData<List<Test>> getAllTests() { return mAllTests; }
     LiveData<List<Nurse>> getAllNurses() { return mAllNurses; }
-
-    LiveData<List<Patient>> getPatientsForTest(int tId)
-    {
-        mPatientsForTest = mPatientTestDao.getPatientsForTest(tId);
-        return mPatientsForTest;
-    }
 
     LiveData<List<Test>> getTestsForPatient(int patientId) {
         // mPatientTestDao.getTestsForPatient(patientId);
