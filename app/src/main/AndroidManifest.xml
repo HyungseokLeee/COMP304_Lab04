@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brenton_Hauth_Hyungseoklee_COMP304Lab4_Ex1">
         <activity android:name=".ViewTestInfoActivity"></activity>
+          <activity android:name=".UpdateInfoActivity"></activity>
         <activity android:name=".TestActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".PatientActivity" />
