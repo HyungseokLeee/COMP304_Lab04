@@ -7,6 +7,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Patient {
+    public static final String
+        PATIENT_ID_EXTRA = "patient_id",
+        PATIENT_NAME_EXTRA = "patient_name";
+
     @PrimaryKey
     @ColumnInfo(name = "patientId")
     private int patientId;
@@ -47,8 +51,7 @@ public class Patient {
         this.lastName = lastName;
     }
     public String getDepartment(){return department;}
-    public void setDepartment(String department)
-    {
+    public void setDepartment(String department) {
         this.department = department;
     }
 

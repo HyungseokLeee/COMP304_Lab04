@@ -1,19 +1,18 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TestAdapter
-        extends RecyclerView.Adapter<TestAdapter.TestViewHolder>
-        implements View.OnClickListener {
+public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder> {
 
     private final List<Test> tests;
 
@@ -27,7 +26,6 @@ public class TestAdapter
         LayoutInflater in = LayoutInflater.from(p.getContext());
 
         View view = in.inflate(R.layout.test_view_layout, p, false);
-        view.setOnClickListener(this);
 
         return new TestViewHolder(view);
     }
@@ -40,24 +38,47 @@ public class TestAdapter
     @Override
     public int getItemCount() { return tests.size(); }
 
-    @Override
-    public void onClick(View view) { /* ... */ }
 
     //--------------------------------------------------
-    public static class TestViewHolder extends RecyclerView.ViewHolder {
+    public static class TestViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
 
-        private final TextView testTextView;
+        private final TextView testIdTextView,
+                testBPHTextView, testBPLTextView,
+                testPatientIdTextView, testTempTextView;
+
+        private final Button testEditButton;
+
+        private Test test;
 
         public TestViewHolder(@NonNull View view) {
             super(view);
-            testTextView = view.findViewById(R.id.testTextView);
+            testIdTextView = view.findViewById(R.id.testIdTextView);
+            testBPHTextView = view.findViewById(R.id.testBPHTextView);
+            testBPLTextView = view.findViewById(R.id.testBPLTextView);
+            testPatientIdTextView = view.findViewById(R.id.testPatientIdTextView);
+            testTempTextView = view.findViewById(R.id.testTempTextView);
+            testEditButton = view.findViewById(R.id.testEditButton);
         }
 
-        @SuppressLint("SetTextI18n")
+
         public void setTest(Test test) {
-            String text = Integer.toString(test.getTestId());
-            // Cannot set id directly because it is an int
-            testTextView.setText(text);
+            this.test = test;
+            testIdTextView.setText(String.format("Test ID: %s", test.getTestId()));
+            testPatientIdTextView.setText(String.format("(Patient: %s)", test.getPatientID()));
+            testBPHTextView.setText(String.format("BPH: %s", test.getBPH()));
+            testBPLTextView.setText(String.format("BPL: %s", test.getBPL()));
+            testTempTextView.setText(String.format("Temperature: %s°C", test.getBPL()));
+
+            testEditButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(v.getContext(),
+                "Edit " + test.getTestId(),
+                Toast.LENGTH_SHORT).show();
         }
     }
     //--------------------------------------------------
