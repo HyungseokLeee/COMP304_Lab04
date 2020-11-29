@@ -10,10 +10,20 @@
     <string name="edit_text_department_hint">Department</string>
     <string name="edit_text_first_name_hint">First Name</string>
     <string name="edit_text_last_name_hint">Last Name</string>
+    <string name = "patientId_Form_hint">Enter patient ID</string>
     <string name="login_button_text">Login</string>
     <string name="sign_up_button_txt">Sign Up</string>
     <string name="view_patients">View Patients</string>
     <string name="logout">Logout</string>
     <string name="view_tests">View tests</string>
+    <string name="enter_test">Enter test</string>
     <string name="edit_patient_button_text">Edit</string>
+    <string name = "testActivityTitle">Test List</string>
+    <string name = "button_push">Enter</string>
+    <string name="edit_text_testId_hint">Test ID(only integers)</string>
+    <string name="edit_text_patientId_hint">Patient ID(only integers)</string>
+    <string name="edit_text_nurseId_hint">Nurse ID(only integers)</string>
+    <string name="edit_text_BPL_hint">BPL(only integers)</string>
+    <string name="edit_text_BPH_hint">BPH(only integers)</string>
+    <string name="edit_text_temperature_hint">Temperature(Float)</string>
 </resources>

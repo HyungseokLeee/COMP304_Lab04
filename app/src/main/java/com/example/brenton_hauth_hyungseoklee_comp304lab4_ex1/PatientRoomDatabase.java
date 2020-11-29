@@ -8,12 +8,11 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Patient.class,Test.class,PatientTest.class,Nurse.class} , version = 1, exportSchema = false)
+@Database(entities = {Patient.class,Test.class,Nurse.class} , version = 1, exportSchema = false)
 public abstract class PatientRoomDatabase extends RoomDatabase {
     public abstract PatientDao PatientDao();
     public abstract NurseDao NurseDao();
     public abstract TestDao TestDao();
-    public abstract PatientTestDao PatientTestDao();
 
     private static volatile PatientRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
