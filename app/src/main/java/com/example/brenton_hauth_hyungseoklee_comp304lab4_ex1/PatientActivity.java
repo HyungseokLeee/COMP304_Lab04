@@ -39,7 +39,6 @@ public class PatientActivity
         initRecycler();
 
         nurse = new Nurse();
-
         // Gets login prefs
         SharedPreferences loginPrefs = PrefsHelper.getLoginPrefs(this);
 
@@ -48,7 +47,6 @@ public class PatientActivity
             // sets header for Nurse
             patientTitleTextView.setText(
                     String.format("Patients for %s", nurse.getNurseID()));
-
             // Gets patients associated with 'nurse'
             LiveData<List<Patient>> patients =
                     patientViewModel.getPatientsForNurse(nurse.getNurseID());
@@ -60,6 +58,11 @@ public class PatientActivity
                 "You are not logged in!",
                 Toast.LENGTH_SHORT).show();
         }
+        /*patientViewModel.insert(new Patient(107983021, "Jaakkima", "Romilly", nurse.getDepartment(), nurse.getNurseID(), "D-14"));
+        patientViewModel.insert(new Patient(107983027, "September", "Sweet", nurse.getDepartment(), nurse.getNurseID(), "A-19"));
+        patientViewModel.insert(new Patient(107983034, "Leanne", "Norman", nurse.getDepartment(), nurse.getNurseID(), "H-23"));
+        patientViewModel.insert(new Patient(107983039, "Bram", "Strong", nurse.getDepartment(), nurse.getNurseID(), "F-13"));
+        patientViewModel.insert(new Patient(107983044, "Nikki", "Hamilton", nurse.getDepartment(), nurse.getNurseID(), "J-28"));*/
     }
 
     private void initRecycler() {
