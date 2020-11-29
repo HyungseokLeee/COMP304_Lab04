@@ -95,10 +95,12 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
                 in.putExtra(Patient.PATIENT_NAME_EXTRA, patient.getFullName());
 
             } else if (id == R.id.patientEditButton) {
-                Toast.makeText(v.getContext(),
+/*                Toast.makeText(v.getContext(),
                         "Not yet implemented " + patient.getPatientId(),
-                        Toast.LENGTH_SHORT).show();
-                return;
+                        Toast.LENGTH_SHORT).show();*/
+                in = new Intent(v.getContext(), UpdateInfoActivity.class);
+                in.putExtra(patient.PATIENT_ID_EXTRA,patient.getPatientId());
+                //return;
             } else {
                 Log.d("PATIENT_VH:onClick", id + " did not match!");
                 return;

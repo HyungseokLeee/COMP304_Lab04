@@ -61,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
         {
             activity = TestActivity.class;
         }
-        else if(id == R.id.mainEnterUpdateTextView)
-        {
-            activity = UpdateInfoActivity.class;
-        }
         else {
             Log.d("MAIN:onNavItemClick", "view Id did not match!");
             return;
