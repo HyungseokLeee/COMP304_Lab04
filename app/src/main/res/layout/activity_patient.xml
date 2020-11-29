@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".PatientActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/patientTitleTextView"
         android:textSize="12pt"
         android:text="rrrr"
@@ -16,16 +16,71 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+
+    <EditText
+        android:id="@+id/patientIdEditText"
+        app:layout_constraintEnd_toStartOf="@id/patientRoomEditText"
+        android:hint="@string/edit_text_patientId_v2_hint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/patientRoomEditText"
+        android:hint="@string/edit_Text_room_hint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/patientIdEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/patientFirstNameEditText"
+        android:hint="@string/edit_text_first_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/patientIdEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/patientLastNameEditText"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/patientLastNameEditText"
+        android:hint="@string/edit_text_last_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/patientRoomEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/patientFirstNameEditText"
+        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/patientDepEditText"
+        android:hint="@string/edit_text_department_hint"
+        app:layout_constraintTop_toBottomOf="@id/patientFirstNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addPatientButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/addPatientButton"
         android:text="@string/add_patient"
+        app:layout_constraintStart_toEndOf="@id/patientDepEditText"
+        app:layout_constraintTop_toBottomOf="@id/patientLastNameEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
         android:onClick="onAddPatientButtonClick"
+        android:layout_marginEnd="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

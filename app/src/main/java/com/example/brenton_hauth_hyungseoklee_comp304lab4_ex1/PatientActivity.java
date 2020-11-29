@@ -1,6 +1,5 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -11,22 +10,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
+import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.ValidationHelper;
 
 import java.util.List;
+import java.util.Random;
 
 public class PatientActivity
         extends AppCompatActivity
         implements Observer<List<Patient>> {
 
-    private TextView patientTitleTextView;
+    private static Random random = new Random();
+
+    private PatientViewModel patientViewModel;
 
     private RecyclerView recyclerView;
-    private PatientViewModel patientViewModel;
+    private EditText patientIdEditText,
+        patientRoomEditText, patientFirstNameEditText,
+        patientLastNameEditText, patientDepEditText;
+
     private Nurse nurse;
+    private Patient newPatient;
+    private int nextRandomId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +44,20 @@ public class PatientActivity
         setContentView(R.layout.activity_patient);
 
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
-        patientTitleTextView = findViewById(R.id.patientTitleTextView);
 
         initRecycler();
 
+
         nurse = new Nurse();
+        newPatient = new Patient();
+        nextRandomId = randomId();
         // Gets login prefs
         SharedPreferences loginPrefs = PrefsHelper.getLoginPrefs(this);
 
         // Checks if nurse is stored in login prefs
         if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
-            // sets header for Nurse
-            patientTitleTextView.setText(
-                    String.format("Patients for %s", nurse.getNurseID()));
+            initUI();
+
             // Gets patients associated with 'nurse'
             LiveData<List<Patient>> patients =
                     patientViewModel.getPatientsForNurse(nurse.getNurseID());
@@ -72,6 +83,19 @@ public class PatientActivity
         recyclerView.setLayoutManager(manager);
     }
 
+    private void initUI() {
+        // sets header for Nurse
+        setTitle(String.format("Patients for %s", nurse.getNurseID()));
+
+        patientIdEditText = findViewById(R.id.patientIdEditText);
+        patientRoomEditText = findViewById(R.id.patientRoomEditText);
+        patientFirstNameEditText = findViewById(R.id.patientFirstNameEditText);
+        patientLastNameEditText = findViewById(R.id.patientLastNameEditText);
+        patientDepEditText = findViewById(R.id.patientDepEditText);
+
+        patientDepEditText.setHint(String.format("Department (%s)", nurse.getDepartment()));
+    }
+
     @Override
     public void onChanged(List<Patient> patients) {
         PatientAdapter adapter = new PatientAdapter(patients);
@@ -79,9 +103,12 @@ public class PatientActivity
     }
 
     public void onAddPatientButtonClick(View v) {
-        // TODO: Navigate to Update Info activity to add patient
-        Toast.makeText(this,
-            "Add patient for nurse " + nurse.getNurseID(),
-            Toast.LENGTH_SHORT).show();
+        //if (ValidationHelper.validateId(patientIdEditText, )) {
+
+        //}
+    }
+
+    private static int randomId() {
+        return 0;
     }
 }

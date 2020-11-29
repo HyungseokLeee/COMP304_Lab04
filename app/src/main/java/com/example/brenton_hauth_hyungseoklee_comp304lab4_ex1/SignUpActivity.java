@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                 result = false;
             }
             if (!validate(signUpFirstName, "^[\\w\\-']+$",
-                R.string.first_name_err_msg,
+                R.string.name_err_msg,
                 (s) -> nurse.setFirstName(s))) {
                 result = false;
             }
