@@ -57,9 +57,13 @@ public class MainActivity extends AppCompatActivity {
             activity = PatientActivity.class;
         // } else if () {
         }
-        if(id == R.id.mainEnterTestTextView)
+        else if(id == R.id.mainEnterTestTextView)
         {
             activity = TestActivity.class;
+        }
+        else if(id == R.id.mainEnterUpdateTextView)
+        {
+            activity = UpdateInfoActivity.class;
         }
         else {
             Log.d("MAIN:onNavItemClick", "view Id did not match!");

@@ -4,23 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestActivity">
+    tools:context=".UpdateInfoActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_height="270dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/edit_text_testId_hint"
-            android:inputType="textPersonName" />
+        app:layout_constraintBottom_toTopOf="@+id/updateTestInfoButton">
 
         <EditText
             android:id="@+id/editTextTextPatientId"
@@ -35,7 +26,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/edit_text_nurseId_hint"
+            android:hint="@string/edit_text_first_name_hint"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edit_text_last_name_hint"
             android:inputType="textPersonName" />
 
         <EditText
@@ -43,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/edit_text_BPL_hint"
+            android:hint="@string/edit_text_department_hint"
             android:inputType="textPersonName" />
 
         <EditText
@@ -51,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/edit_text_BPH_hint"
+            android:hint="@string/edit_text_nurseId_hint"
             android:inputType="textPersonName" />
 
         <EditText
@@ -59,30 +58,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/edit_text_temperature_hint"
+            android:hint="@string/edit_Text_room_hint"
             android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/DisplayTestInfoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="141dp"
-            android:onClick="insertTest"
-            android:text="Enter"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="270dp" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/TitletextView"
+        android:id="@+id/titletextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Enter Test"
+        android:text="Update Patient Info"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/updateTestInfoButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:onClick="updatePatient"
+        android:text="Update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/patientInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,12 @@
 package com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
     private EditText editTextTestId, editTextPatientId, editTextNurseId,
@@ -30,12 +22,12 @@ public class TestActivity extends AppCompatActivity {
     }
     public void insertTest(View view)
     {
-        editTextTestId = findViewById(R.id.editTextTextTestId);
+        editTextTestId = findViewById(R.id.editTextLastName);
         editTextPatientId = findViewById(R.id.editTextTextPatientId);
-        editTextNurseId = findViewById(R.id.editTextNurseId);
-        editTextBPL = findViewById(R.id.editTextTextBPL);
-        editTextBPH = findViewById(R.id.editTextTextBPH);
-        editTextTemperature = findViewById(R.id.editTextTextTemperature);
+        editTextNurseId = findViewById(R.id.editTextFirstName);
+        editTextBPL = findViewById(R.id.editTextDepartment);
+        editTextBPH = findViewById(R.id.editTextNurseId);
+        editTextTemperature = findViewById(R.id.editTextRoom);
         try {
             test.setTestId(Integer.parseInt(editTextTestId.getText().toString()));
             test.setPatientID(Integer.parseInt(editTextPatientId.getText().toString()));
