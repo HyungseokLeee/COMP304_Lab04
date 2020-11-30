@@ -38,11 +38,9 @@ public class UpdateInfoActivity
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
         patientInfoTextView = findViewById(R.id.patientInfoTextView);
-        patientIdTextView = findViewById(R.id.editTextTextPatientId);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextDepartment = findViewById(R.id.editTextDepartment);
-        nurseIdTextView = findViewById(R.id.editTextNurseId);
         editTextRoom = findViewById(R.id.editTextRoom);
 
         Intent in = getIntent();
