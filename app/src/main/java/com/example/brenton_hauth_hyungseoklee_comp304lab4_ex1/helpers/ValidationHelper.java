@@ -16,6 +16,14 @@ public class ValidationHelper {
         ROOM_REGEX = "^[A-Z]+\\s*\\-?\\s*\\d+$", // E.g. "A12", "B- 23", "H-1", "F 4"
         PASSWORD_REGEX = "^.{8,32}$"; // anything between 8 & 32 characters
 
+    public static int randomId() {
+        // Last 2 digits of nanoTime are 0 so we remove them
+        // plus 1 more spot for safety. After an int cast,
+        // the value may still be negative.
+        // TODO: Remove very very small chance of duplicates
+        return Math.abs((int)(System.nanoTime() >> 3));
+    }
+
     // Checks if the field has a valid id & sets id to callback
     public static boolean validateId(EditText field, SetCallback<Integer> callback) {
         return validate(field, ID_REGEX, R.string.username_err_msg, wrapIdCallback(callback));

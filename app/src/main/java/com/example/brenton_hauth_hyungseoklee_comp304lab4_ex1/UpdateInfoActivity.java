@@ -89,7 +89,6 @@ public class UpdateInfoActivity
 
     public void update(View view) {
         try {
-            // TODO: Disable 'patientIdTextView' and 'nurseIdTextView'
             // If you want, you can use editText.setError() to give the user a specific error
             //int newPatientId = Integer.parseInt(patientIdTextView.getText().toString());
 

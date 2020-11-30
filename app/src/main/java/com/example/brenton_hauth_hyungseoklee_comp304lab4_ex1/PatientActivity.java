@@ -102,13 +102,12 @@ public class PatientActivity
 
         Patient p = new Patient(); // creates empty patient
 
-        boolean result = true; // result defaults to true
-
         // Doing the chain of '&=' statements allows us to check all fields at once and
         // inform the user what fields have an issue
 
         // Checks & sets patient id, gives a randomId as the default
-        result &= ValidationHelper.validateId(patientIdEditText, randomId(), p::setPatientId);
+        boolean result = ValidationHelper.validateId(patientIdEditText,
+                ValidationHelper.randomId(), p::setPatientId);
 
         // Checks & sets room number
         result &= ValidationHelper.validateRoom(patientRoomEditText, p::setRoom);
@@ -144,13 +143,5 @@ public class PatientActivity
         patientDepEditText.setText("");
         patientIdEditText.setText("");
         patientRoomEditText.setText("");
-    }
-
-    private static int randomId() {
-        // Last 2 digits of nanoTime are 0 so we remove them
-        // plus 1 more spot for safety. After an int cast,
-        // the value may still be negative.
-        // TODO: Remove very very small chance of duplicates
-        return Math.abs((int)(System.nanoTime() >> 3));
     }
 }

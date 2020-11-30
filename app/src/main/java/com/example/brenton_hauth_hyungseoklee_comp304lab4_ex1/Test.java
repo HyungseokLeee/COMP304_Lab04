@@ -12,6 +12,8 @@ import androidx.room.PrimaryKey;
 //        temperature
 @Entity
 public class Test {
+    public static final String TEST_ID_EXTRA = "test_id";
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "testId")
