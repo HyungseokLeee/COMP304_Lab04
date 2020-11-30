@@ -2,7 +2,8 @@
     <string name="app_name">Brenton_Hauth_Hyungseoklee_COMP304Lab4_Ex1</string>
     <string name="password_err_msg">Must be 8 to 32 characters long</string>
     <string name="username_err_msg">Must be a number with a minimum of 8 digits</string>
-    <string name="name_err_msg">Name must only contain letters</string>
+    <string name="name_err_msg">Name must only contain letters, hyphens and apostrophes</string>
+    <string name="room_err_msg">Room must be a letter and a number (E.g. A-11)</string>
     <string name="last_name_err_msg">Last name must only contain letters</string>
     <string name="department_err_msg">Department must be a minimum of 2 characters</string>
     <string name="edit_text_username_hint">Username</string>
