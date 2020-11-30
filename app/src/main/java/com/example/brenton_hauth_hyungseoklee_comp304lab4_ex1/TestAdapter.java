@@ -69,7 +69,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
             testPatientIdTextView.setText(String.format("(Patient: %s)", test.getPatientID()));
             testBPHTextView.setText(String.format("BPH: %s", test.getBPH()));
             testBPLTextView.setText(String.format("BPL: %s", test.getBPL()));
-            testTempTextView.setText(String.format("Temperature: %s°C", test.getBPL()));
+            testTempTextView.setText(String.format("Temperature: %s°C", test.getTemperature()));
 
             testEditButton.setOnClickListener(this);
         }

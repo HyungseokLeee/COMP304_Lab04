@@ -24,9 +24,7 @@ public class UpdateInfoActivity
     private TextView editTextLastName;
     private TextView editTextFirstName;
     private TextView editTextDepartment;
-    private TextView nurseIdTextView;
     private TextView editTextRoom;
-    private TextView patientIdTextView;
 
     private int nurseId, patientId;
     private Patient currentPatient;
@@ -38,10 +36,10 @@ public class UpdateInfoActivity
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
         patientInfoTextView = findViewById(R.id.patientInfoTextView);
-        editTextLastName = findViewById(R.id.editTextLastName);
-        editTextFirstName = findViewById(R.id.editTextFirstName);
-        editTextDepartment = findViewById(R.id.editTextDepartment);
-        editTextRoom = findViewById(R.id.editTextRoom);
+        editTextLastName = findViewById(R.id.editTextTestId);
+        editTextFirstName = findViewById(R.id.editTextBPL);
+        editTextDepartment = findViewById(R.id.editTextBPH);
+        editTextRoom = findViewById(R.id.editTextTemperature);
 
         Intent in = getIntent();
         patientId = in.getIntExtra(Patient.PATIENT_ID_EXTRA, -1);
