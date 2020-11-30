@@ -10,7 +10,9 @@ import java.util.regex.Pattern;
 public class ValidationHelper {
     private static final String
         ID_REGEX = "^\\d{8,}$",
-        NAME_REGEX = "^[\\w\\-']+$";
+        NAME_REGEX = "^[\\w\\-']+$",
+        ROOM_REGEX = "^\\w+\\s*\\-?\\s*\\d+$",
+        PASSWORD_REGEX = "^.{8,32}$";
 
     public static boolean validateId(EditText field, SetCallback<Integer> callback) {
         return validate(field, ID_REGEX, R.string.username_err_msg, wrapIdCallback(callback));
@@ -30,6 +32,14 @@ public class ValidationHelper {
 
     public static boolean validateName(EditText field, SetCallback<String> callback) {
         return validate(field, NAME_REGEX, R.string.name_err_msg, callback);
+    }
+
+    public static boolean validatePassword(EditText field, SetCallback<String> callback) {
+        return validate(field, PASSWORD_REGEX, R.string.password_err_msg, callback);
+    }
+
+    public static boolean validateRoom(EditText field, SetCallback<String> callback) {
+        return validate(field, ROOM_REGEX, R.string.room_err_msg, callback);
     }
 
     public static boolean validate(

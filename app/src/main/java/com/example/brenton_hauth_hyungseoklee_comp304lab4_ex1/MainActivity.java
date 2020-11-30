@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelper;
 
@@ -33,10 +34,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         checkIfLoggedIn();
+//        String str = welcomeTextView.getText().toString();
+//        str += "\nonStart()";
+//        welcomeTextView.setText(str);
     }
 
     private void checkIfLoggedIn() {
+        if (nurse == null) nurse = new Nurse();
+        if (loginPrefs == null) loginPrefs = PrefsHelper.getLoginPrefs(this);
+        
         if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
+            Toast.makeText(this, "HAS NURSE", Toast.LENGTH_SHORT).show();
             String text = String.format("Welcome, %s (%s)!",
                     nurse.getFullName(), nurse.getNurseID());
 
