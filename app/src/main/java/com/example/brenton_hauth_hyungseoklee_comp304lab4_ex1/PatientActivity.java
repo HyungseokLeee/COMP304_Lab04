@@ -19,13 +19,11 @@ import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.PrefsHelpe
 import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.ValidationHelper;
 
 import java.util.List;
-import java.util.Random;
+
 
 public class PatientActivity
         extends AppCompatActivity
         implements Observer<List<Patient>> {
-
-    private static Random random = new Random();
 
     private PatientViewModel patientViewModel;
 
@@ -35,22 +33,18 @@ public class PatientActivity
         patientLastNameEditText, patientDepEditText;
 
     private Nurse nurse;
-    private Patient newPatient;
-    private int nextRandomId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
 
+        // Get patientViewModel
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
 
-        initRecycler();
+        initRecycler(); //
 
-
-        nurse = new Nurse();
-        newPatient = new Patient();
-        nextRandomId = randomId();
+        nurse = new Nurse(); // inits nurse
         // Gets login prefs
         SharedPreferences loginPrefs = PrefsHelper.getLoginPrefs(this);
 
@@ -93,22 +87,77 @@ public class PatientActivity
         patientLastNameEditText = findViewById(R.id.patientLastNameEditText);
         patientDepEditText = findViewById(R.id.patientDepEditText);
 
+        // Makes department field unique
         patientDepEditText.setHint(String.format("Department (%s)", nurse.getDepartment()));
     }
 
     @Override
     public void onChanged(List<Patient> patients) {
+        // Updates the recycler with the list of patients
         PatientAdapter adapter = new PatientAdapter(patients);
         recyclerView.setAdapter(adapter);
     }
 
     public void onAddPatientButtonClick(View v) {
-        //if (ValidationHelper.validateId(patientIdEditText, )) {
 
-        //}
+        Patient p = new Patient(); // creates empty patient
+
+        boolean results = true; // result defaults to true
+
+        // Checks & sets patient id, gives a randomId as the default
+        if (!ValidationHelper.validateId(patientIdEditText, randomId(), p::setPatientId)) {
+            results = false;
+        }
+
+        // Checks & sets room number
+        if (!ValidationHelper.validateRoom(patientRoomEditText, p::setRoom)) {
+            results = false;
+        }
+
+        // Checks & sets department
+        if (!ValidationHelper.validate(patientDepEditText,
+                ".+", nurse.getDepartment(), p::setDepartment)) {
+            results = false;
+        }
+
+        // Checks & sets first name
+        if (!ValidationHelper.validateName(patientFirstNameEditText, p::setFirstName)) {
+            results = false;
+        }
+
+        // Checks & sets last name
+        if (!ValidationHelper.validateName(patientLastNameEditText, p::setLastName)) {
+            results = false;
+        }
+
+        if (results) { // if all the fields are valid
+            p.setNurseId(nurse.getNurseID()); // sets nurse ID
+            try {
+                patientViewModel.insert(p);
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            clearFields();
+            Toast.makeText(this,
+                String.format("Added %s (%s)!", p.getFullName(), p.getPatientId()),
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void clearFields() {
+        patientFirstNameEditText.setText("");
+        patientLastNameEditText.setText("");
+        patientDepEditText.setText("");
+        patientIdEditText.setText("");
+        patientRoomEditText.setText("");
     }
 
     private static int randomId() {
-        return 0;
+        // Last 2 digits of nanoTime are 0 so we remove them
+        // plus 1 more spot for safety. After an int cast,
+        // the value may still be negative.
+        // TODO: Remove very very small chance of duplicates
+        return Math.abs((int)(System.nanoTime() >> 3));
     }
 }
