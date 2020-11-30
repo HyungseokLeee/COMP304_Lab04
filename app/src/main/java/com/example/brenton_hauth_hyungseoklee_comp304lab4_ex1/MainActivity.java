@@ -40,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIfLoggedIn() {
+        // Was having a bug, this seem to fix it
         if (nurse == null) nurse = new Nurse();
         if (loginPrefs == null) loginPrefs = PrefsHelper.getLoginPrefs(this);
-        
+
+        //
         if (PrefsHelper.hasSavedNurse(loginPrefs, nurse)) {
             Toast.makeText(this, "HAS NURSE", Toast.LENGTH_SHORT).show();
             String text = String.format("Welcome, %s (%s)!",

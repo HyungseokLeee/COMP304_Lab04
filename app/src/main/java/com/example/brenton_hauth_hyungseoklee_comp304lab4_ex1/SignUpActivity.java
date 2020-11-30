@@ -7,15 +7,18 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.brenton_hauth_hyungseoklee_comp304lab4_ex1.helpers.ValidationHelper;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private TextView signUpUsername,
+    private EditText signUpUsername,
             signUpPassword, signUpDepartment,
             signUpFirstName, signUpLastName;
 
@@ -57,34 +60,17 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void onSignUpButtonClick(View v) {
-        boolean result = true;
-            if (!validate(signUpUsername, "^\\d{8,}$",
-                R.string.username_err_msg,
-                (s) -> nurse.setNurseID(Integer.parseInt(s)))) {
-                result = false;
-            }
-            if (!validate(signUpPassword, "^.{8,32}$",
-                R.string.password_err_msg,
-                (s) -> nurse.setPassword(s))) {
-                result = false;
-            }
-            if (!validate(signUpFirstName, "^[\\w\\-']+$",
-                R.string.name_err_msg,
-                (s) -> nurse.setFirstName(s))) {
-                result = false;
-            }
-            if (!validate(signUpLastName, "^[\\w\\-']+$",
-                R.string.last_name_err_msg,
-                (s) -> nurse.setLastName(s))) {
-                result = false;
-            }
-            if (!validate(signUpDepartment, "^\\w+$",
-                R.string.department_err_msg,
-                (s) -> nurse.setDepartment(s))) {
-                result = false;
-            }
+
+        // Validates all sign up fields & sets values accordingly
+        boolean result = ValidationHelper.validateId(signUpUsername, nurse::setNurseID);
+        result &= ValidationHelper.validatePassword(signUpPassword, nurse::setPassword);
+        result &= ValidationHelper.validateName(signUpFirstName, nurse::setFirstName);
+        result &= ValidationHelper.validateName(signUpLastName, nurse::setLastName);
+        result &= ValidationHelper.validate(signUpDepartment,
+                ".+", R.string.department_err_msg, nurse::setDepartment);
 
         if (result) {
+            // If all results are find, then try to insert the nurse into db
             try {
                 patientViewModel.insert(nurse);
             } catch (Exception e) {
@@ -95,18 +81,18 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validate(TextView field, String regex, int errMsg, Parameter p) {
-        CharSequence txt = field.getText();
-        if (Pattern.matches(regex, txt)) {
-            try {
-                p.fn(txt.toString());
-                return true;
-            } catch (Exception ignore) { }
-        }
-        String err = getResources().getString(errMsg);
-        field.setError(err);
-        return false;
-    }
+//    private boolean validate(TextView field, String regex, int errMsg, Parameter p) {
+//        CharSequence txt = field.getText();
+//        if (Pattern.matches(regex, txt)) {
+//            try {
+//                p.fn(txt.toString());
+//                return true;
+//            } catch (Exception ignore) { }
+//        }
+//        String err = getResources().getString(errMsg);
+//        field.setError(err);
+//        return false;
+//    }
 
     interface Parameter { void fn(String s); }
 }

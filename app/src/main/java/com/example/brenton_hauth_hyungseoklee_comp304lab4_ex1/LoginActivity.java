@@ -58,10 +58,10 @@ public class LoginActivity extends AppCompatActivity {
 
 //        locateUser(username, password);
 
-        boolean valid1 = ValidationHelper.validateId(usernameText, nurse::setNurseID);
-        boolean valid2 = ValidationHelper.validatePassword(passwordText, nurse::setPassword);
+        boolean valid = ValidationHelper.validateId(usernameText, nurse::setNurseID);
+        valid &= ValidationHelper.validatePassword(passwordText, nurse::setPassword);
 
-        if (valid1 && valid2) {
+        if (valid) {
             locateNurse(nurse);
         }
     }

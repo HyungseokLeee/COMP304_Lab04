@@ -102,35 +102,28 @@ public class PatientActivity
 
         Patient p = new Patient(); // creates empty patient
 
-        boolean results = true; // result defaults to true
+        boolean result = true; // result defaults to true
+
+        // Doing the chain of '&=' statements allows us to check all fields at once and
+        // inform the user what fields have an issue
 
         // Checks & sets patient id, gives a randomId as the default
-        if (!ValidationHelper.validateId(patientIdEditText, randomId(), p::setPatientId)) {
-            results = false;
-        }
+        result &= ValidationHelper.validateId(patientIdEditText, randomId(), p::setPatientId);
 
         // Checks & sets room number
-        if (!ValidationHelper.validateRoom(patientRoomEditText, p::setRoom)) {
-            results = false;
-        }
+        result &= ValidationHelper.validateRoom(patientRoomEditText, p::setRoom);
 
         // Checks & sets department
-        if (!ValidationHelper.validate(patientDepEditText,
-                ".+", nurse.getDepartment(), p::setDepartment)) {
-            results = false;
-        }
+        result &= ValidationHelper.validate(patientDepEditText,
+                ".+", nurse.getDepartment(), p::setDepartment);
 
         // Checks & sets first name
-        if (!ValidationHelper.validateName(patientFirstNameEditText, p::setFirstName)) {
-            results = false;
-        }
+        result &= ValidationHelper.validateName(patientFirstNameEditText, p::setFirstName);
 
         // Checks & sets last name
-        if (!ValidationHelper.validateName(patientLastNameEditText, p::setLastName)) {
-            results = false;
-        }
+        result &= ValidationHelper.validateName(patientLastNameEditText, p::setLastName);
 
-        if (results) { // if all the fields are valid
+        if (result) { // if all the fields are valid
             p.setNurseId(nurse.getNurseID()); // sets nurse ID
             try {
                 patientViewModel.insert(p);
