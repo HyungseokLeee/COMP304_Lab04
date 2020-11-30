@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 Log.d("LOGIN:OBSERVE(lambda)",
                         "Found nurse!  Id: " + n.getNurseID());
-                PrefsHelper.saveNurse(loginPrefs, nurse);
+                PrefsHelper.saveNurse(loginPrefs, n);
                 finish(); // closes and returns to MainActivity
             }
         });
