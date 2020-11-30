@@ -52,5 +52,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/ApplicationLogo"
+        android:layout_width="match_parent"
+        android:layout_height="591dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/nursing_logo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

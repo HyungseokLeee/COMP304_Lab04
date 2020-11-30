@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         int id = v.getId();
         // Switch case shows shows warning
-        if (id == R.id.mainPatientsTextView) {
+        if (id == R.id.PatientViewButton) {
             activity = PatientActivity.class;
         // } else if () {
         }
